@@ -40,6 +40,8 @@ RR.AudioPlayer = function() {
 		'107': { file: '8.wav' },
 		'75': { file: '8.wav' }
 	};
+	
+	var currentAudio;
 
 	function loadAudioFile(id) {
 
@@ -51,7 +53,15 @@ RR.AudioPlayer = function() {
 				var audio = new Audio('/sounds/'+audioFile.file);
 				audioFile.audio = audio;
 			}
-
+			
+			if (currentAudio)
+			{
+				audioFiles[currentAudio].audio.pause();
+				audioFiles[currentAudio].audio.currentTime = 0;
+			}
+			
+			currentAudio = id;
+			
 			audioFile.audio.play();
 		}
 	}
