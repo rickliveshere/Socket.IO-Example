@@ -36,7 +36,7 @@ app.get('/', routes.index);
 io.sockets.on('connection', function(socket) {
 	socket.on('playSound', function(data) {
 		console.log(data);
-		socket.emit('receive', data.key );
+		io.sockets.emit('receive', data.key );
 	});
 });
 
